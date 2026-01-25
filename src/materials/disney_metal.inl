@@ -33,17 +33,12 @@ Spectrum eval_op::operator()(const DisneyMetal &bsdf) const {
     // d_m = Normal Distribution Function (GGX)
     // d_m = 1 / (pi * alpha_x * alpha_y * half_vec_denom^2)
     // half_vec_denom = (h_local.x^2 / alpha_x^2) + (h_local.y^2 / alpha_y^2) + h_local.z^2
+    
     Real aspect = sqrt(1 - (anisotropic_value * 0.9));
     Real alpha_x = std::max(0.0001, (roughness_value * roughness_value) / aspect);
     Real alpha_y = std::max(0.0001, roughness_value * roughness_value * aspect);
     Real half_vec_denom = (h_local.x * h_local.x) / (alpha_x * alpha_x) + (h_local.y * h_local.y) / (alpha_y * alpha_y) + (h_local.z * h_local.z);
     Real d_m = Real(1.0) / (M_PI * alpha_x * alpha_y * half_vec_denom * half_vec_denom);
-
-    // g_m = Geometry term (Smith GGX)
-    // aspect = sqrt(1 - (anisotropic * 0.9))
-    // alpha_x = max(0.001, roughness^2 / aspect)
-    // alpha_y = max(0.001, roughness^2 * aspect)
-    
 
     // g_in = 1 / (1 + lambda_sqrt_in)
     // lambda_sqrt_in = (sqrt(1 + ((dir_l.x * alpha_x)^2 + (dir_l.y * alpha_y)^2   /  dir_l.z^2)) -1) / 2
@@ -57,11 +52,8 @@ Spectrum eval_op::operator()(const DisneyMetal &bsdf) const {
     Real g_m = g_in * g_out;
 
     // Spectrum f_metal = f_m * d_m * g_m / (4.0 * abs(n * dir_in))
-    // Spectrum f_metal = f_m * d_m * g_m / (4.0 * abs(dot(frame.n, dir_in)) * abs(dot(half_vector, dir_out)));
-    Spectrum f_metal = f_m * d_m * g_m / (4.0 * abs(dot(frame.n, dir_in)) * abs(dot(frame.n, dir_out)));
+    Spectrum f_metal = f_m * d_m * g_m / (4.0 * abs(dot(frame.n, dir_in)));
     return f_metal;
-    // Spectrum f_metal = make_zero_spectrum();
-    // return f_metal;
 
 
     
@@ -78,10 +70,34 @@ Real pdf_sample_bsdf_op::operator()(const DisneyMetal &bsdf) const {
     if (dot(frame.n, dir_in) < 0) {
         frame = -frame;
     }
-    // Homework 1: implement this!
+    Vector3 half_vector = normalize(dir_in + dir_out);
+    Real n_dot_in = dot(frame.n, dir_in);
+    Real n_dot_out = dot(frame.n, dir_out);
+    Real n_dot_h = dot(frame.n, half_vector);
+    if (n_dot_out <= 0 || n_dot_h <= 0) {
+        return 0;
+    }
 
+    Real anisotropic_value = eval(bsdf.anisotropic, vertex.uv, vertex.uv_screen_size, texture_pool);
+    Real roughness_value = eval(bsdf.roughness, vertex.uv, vertex.uv_screen_size, texture_pool);
 
-    return 0;
+    Real aspect = sqrt(1 - (anisotropic_value * 0.9));
+    Real alpha_x = std::max(0.0001, (roughness_value * roughness_value) / aspect);
+    Real alpha_y = std::max(0.0001, roughness_value * roughness_value * aspect);
+
+    Vector3 h_local = to_local(frame, half_vector);
+    Real half_vec_denom = (h_local.x * h_local.x) / (alpha_x * alpha_x) +
+                          (h_local.y * h_local.y) / (alpha_y * alpha_y) +
+                          (h_local.z * h_local.z);
+    Real d_m = Real(1.0) / (M_PI * alpha_x * alpha_y * half_vec_denom * half_vec_denom);
+
+    Vector3 wi_local = to_local(frame, dir_in);
+    Real lambda_sqrt_in = (sqrt(1 + ((wi_local.x * alpha_x) * (wi_local.x * alpha_x) +
+                                     (wi_local.y * alpha_y) * (wi_local.y * alpha_y)) /
+                                        (wi_local.z * wi_local.z)) - 1) / 2.0;
+    Real g_in = 1.0 / (1.0 + lambda_sqrt_in);
+
+    return (g_in * d_m) / (4.0 * abs(n_dot_in));
 }
 
 std::optional<BSDFSampleRecord>
@@ -95,9 +111,36 @@ std::optional<BSDFSampleRecord>
     if (dot(frame.n, dir_in) < 0) {
         frame = -frame;
     }
-    // Homework 1: implement this!
+    Real anisotropic_value = eval(bsdf.anisotropic, vertex.uv, vertex.uv_screen_size, texture_pool);
+    Real roughness_value = eval(bsdf.roughness, vertex.uv, vertex.uv_screen_size, texture_pool);
 
-    return {};
+    Real aspect = sqrt(1 - (anisotropic_value * 0.9));
+    Real alpha_x = std::max(0.0001, (roughness_value * roughness_value) / aspect);
+    Real alpha_y = std::max(0.0001, roughness_value * roughness_value * aspect);
+
+    Vector3 local_dir_in = to_local(frame, dir_in);
+    Vector3 stretched_dir_in = normalize(Vector3{
+        alpha_x * local_dir_in.x,
+        alpha_y * local_dir_in.y,
+        local_dir_in.z
+    });
+    Vector3 local_micro_normal = sample_visible_normals(stretched_dir_in, Real(1), rnd_param_uv);
+    Vector3 unstretched_micro_normal = normalize(Vector3{
+        alpha_x * local_micro_normal.x,
+        alpha_y * local_micro_normal.y,
+        std::max(Real(0), local_micro_normal.z)
+    });
+
+    Vector3 half_vector = to_world(frame, unstretched_micro_normal);
+    Vector3 reflected = normalize(-dir_in + 2 * dot(dir_in, half_vector) * half_vector);
+    if (dot(frame.n, reflected) <= 0) {
+        return {};
+    }
+
+    return BSDFSampleRecord{
+        reflected,
+        Real(0) /* eta */, roughness_value /* roughness */
+    };
 }
 
 TextureSpectrum get_texture_op::operator()(const DisneyMetal &bsdf) const {

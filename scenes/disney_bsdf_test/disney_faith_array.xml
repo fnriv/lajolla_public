@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<scene version="0.5.0">
+	<integrator type="path">
+		<integer name="maxDepth" value="-1"/>
+	</integrator>
+
+	<texture type="checkerboard" id="__planetex">
+		<rgb name="color0" value="0.55 0.35 0.2"/>
+		<rgb name="color1" value="0.82 0.71 0.55"/>
+		<float name="uscale" value="8.0"/>
+		<float name="vscale" value="16.0"/>
+		<float name="uoffset" value="0.0"/>
+		<float name="voffset" value="0.0"/>
+	</texture>
+
+	<bsdf type="disneybsdf" id="__planemat">
+		<rgb name="baseColor" value="0.5 0.2 0.7"/>
+		<float name="specularTransmission" value="0.0"/>
+		<float name="metallic" value="1.0"/>
+		<float name="subsurface" value="0.0"/>
+		<float name="specular" value="0.8"/>
+		<float name="roughness" value="0.3"/>
+		<float name="specularTint" value="0.0"/>
+		<float name="anisotropic" value="0.0"/>
+		<float name="sheen" value="0.0"/>
+		<float name="sheenTint" value="0.5"/>
+		<float name="clearcoat" value="0.0"/>
+		<float name="clearcoatGloss" value="0.5"/>
+		<float name="eta" value="1.5"/>
+	</bsdf>
+
+	<bsdf type="diffuse" id="__diffmat">
+		<rgb name="reflectance" value="0.18 0.18 0.18"/>
+	</bsdf>
+
+	
+
+	<shape type="sphere" id="Sphere0">
+		<point name="center" x="-3.5" y="3.5" z="0.4"/>
+		<float name="radius" value="0.4"/>
+		<bsdf type="disneybsdf">
+			<rgb name="baseColor" value="0.82 0.67 0.16"/>
+			<float name="specularTransmission" value="0.0"/>
+			<float name="metallic" value="0.0"/>
+			<float name="subsurface" value="0.5"/>
+			<float name="specular" value="0.5"/>
+			<float name="roughness" value="0.5"/>
+			<float name="specularTint" value="0.5"/>
+			<float name="anisotropic" value="0.0"/>
+			<float name="sheen" value="0.0"/>
+			<float name="sheenTint" value="0.5"/>
+			<float name="clearcoat" value="0.0"/>
+			<float name="clearcoatGloss" value="0.5"/>
+			<float name="eta" value="1.5"/>
+		</bsdf>
+	</shape>
+
+	<shape type="sphere" id="Sphere1">
+		<point name="center" x="-2.8" y="3.0" z="0.5"/>
+		<float name="radius" value="0.5"/>
+		<bsdf type="disneybsdf">
+			<rgb name="baseColor" value="0.25 0.83 0.36"/>
+			<float name="specularTransmission" value="0.0"/>
+			<float name="metallic" value="0.8"/>
+			<float name="subsurface" value="0.5"/>
+			<float name="specular" value="0.5"/>
+			<float name="roughness" value="0.5"/>
+			<float name="specularTint" value="0.5"/>
+			<float name="anisotropic" value="0.0"/>
+			<float name="sheen" value="0.0"/>
+			<float name="sheenTint" value="0.5"/>
+			<float name="clearcoat" value="1.0"/>
+			<float name="clearcoatGloss" value="0.5"/>
+			<float name="eta" value="1.5"/>
+		</bsdf>
+	</shape>
+
+	<shape type="sphere" id="Sphere2">
+		<point name="center" x="-2.0" y="2.4" z="0.55"/>
+		<float name="radius" value="0.45"/>
+		<bsdf type="disneybsdf">
+			<rgb name="baseColor" value="0.75 0.83 0.46"/>
+			<float name="specularTransmission" value="0.0"/>
+			<float name="metallic" value="0.1"/>
+			<float name="subsurface" value="0.5"/>
+			<float name="specular" value="0.5"/>
+			<float name="roughness" value="0.5"/>
+			<float name="specularTint" value="0.5"/>
+			<float name="anisotropic" value="0.0"/>
+			<float name="sheen" value="1.0"/>
+			<float name="sheenTint" value="0.5"/>
+			<float name="clearcoat" value="0.5"/>
+			<float name="clearcoatGloss" value="0.5"/>
+			<float name="eta" value="1.5"/>
+		</bsdf>
+	</shape>
+
+	<shape type="sphere" id="Sphere3">
+		<point name="center" x="-1.0" y="2.0" z="0.35"/>
+		<float name="radius" value="0.35"/>
+		<bsdf type="disneybsdf">
+			<rgb name="baseColor" value="0.75 0.83 0.46"/>
+			<float name="specularTransmission" value="0.5"/>
+			<float name="metallic" value="0.1"/>
+			<float name="subsurface" value="0.0"/>
+			<float name="specular" value="1.0"/>
+			<float name="roughness" value="0.5"/>
+			<float name="specularTint" value="0.5"/>
+			<float name="anisotropic" value="0.0"/>
+			<float name="sheen" value="0.0"/>
+			<float name="sheenTint" value="0.5"/>
+			<float name="clearcoat" value="0.0"/>
+			<float name="clearcoatGloss" value="0.5"/>
+			<float name="eta" value="1.5"/>
+		</bsdf>
+	</shape>
+
+	<shape type="sphere" id="Sphere4">
+		<point name="center" x="0.2" y="1.8" z="0.5"/>
+		<float name="radius" value="0.4"/>
+		<bsdf type="disneybsdf">
+			<rgb name="baseColor" value="0.5 0.23 0.84"/>
+			<float name="specularTransmission" value="0.0"/>
+			<float name="metallic" value="0.5"/>
+			<float name="subsurface" value="1.0"/>
+			<float name="specular" value="1.0"/>
+			<float name="roughness" value="0.5"/>
+			<float name="specularTint" value="0.5"/>
+			<float name="anisotropic" value="0.1"/>
+			<float name="sheen" value="0.5"/>
+			<float name="sheenTint" value="0.5"/>
+			<float name="clearcoat" value="0.5"/>
+			<float name="clearcoatGloss" value="0.5"/>
+			<float name="eta" value="1.5"/>
+		</bsdf>
+	</shape>
+
+	<shape type="sphere" id="Sphere5">
+		<point name="center" x="1.2" y="1.5" z="0.4"/>
+		<float name="radius" value="0.4"/>
+		<bsdf type="disneybsdf">
+			<rgb name="baseColor" value="0.5 0.9 0.84"/>
+			<float name="specularTransmission" value="1.0"/>
+			<float name="metallic" value="0.0"/>
+			<float name="subsurface" value="1.0"/>
+			<float name="specular" value="1.0"/>
+			<float name="roughness" value="0.1"/>
+			<float name="specularTint" value="0.5"/>
+			<float name="anisotropic" value="0.1"/>
+			<float name="sheen" value="0.5"/>
+			<float name="sheenTint" value="0.5"/>
+			<float name="clearcoat" value="0.5"/>
+			<float name="clearcoatGloss" value="0.5"/>
+			<float name="eta" value="1.5"/>
+		</bsdf>
+	</shape>
+
+	<!-- 7. Silver metal - rightmost point of curve -->
+	<shape type="sphere" id="Sphere6">
+		<point name="center" x="2.0" y="1.0" z="0.3"/>
+		<float name="radius" value="0.3"/>
+		<bsdf type="disneybsdf">
+			<rgb name="baseColor" value="0.9 0.9 0.84"/>
+			<float name="specularTransmission" value="0.0"/>
+			<float name="metallic" value="1.0"/>
+			<float name="subsurface" value="1.0"/>
+			<float name="specular" value="1.0"/>
+			<float name="roughness" value="0.1"/>
+			<float name="specularTint" value="0.5"/>
+			<float name="anisotropic" value="0.1"/>
+			<float name="sheen" value="0.5"/>
+			<float name="sheenTint" value="0.5"/>
+			<float name="clearcoat" value="0.5"/>
+			<float name="clearcoatGloss" value="0.5"/>
+			<float name="eta" value="1.5"/>
+		</bsdf>
+	</shape>
+
+	<shape type="sphere" id="Sphere7">
+		<point name="center" x="1.5" y="0.3" z="0.6"/>
+		<float name="radius" value="0.45"/>
+		<bsdf type="disneybsdf">
+			<rgb name="baseColor" value="0.2 0.2 0.3"/>
+			<float name="specularTransmission" value="0.5"/>
+			<float name="metallic" value="0.5"/>
+			<float name="subsurface" value="0.5"/>
+			<float name="specular" value="0.5"/>
+			<float name="roughness" value="0.2"/>
+			<float name="specularTint" value="0.5"/>
+			<float name="anisotropic" value="0.1"/>
+			<float name="sheen" value="0.5"/>
+			<float name="sheenTint" value="0.5"/>
+			<float name="clearcoat" value="0.5"/>
+			<float name="clearcoatGloss" value="0.5"/>
+			<float name="eta" value="1.5"/>
+		</bsdf>
+	</shape>
+
+	<shape type="sphere" id="Sphere8">
+		<point name="center" x="0.6" y="-0.2" z="0.4"/>
+		<float name="radius" value="0.4"/>
+		<bsdf type="disneybsdf">
+			<rgb name="baseColor" value="0.53 0.81 0.98"/>
+			<float name="specularTransmission" value="0.0"/>
+			<float name="metallic" value="0.7"/>
+			<float name="subsurface" value="0.2"/>
+			<float name="specular" value="0.8"/>
+			<float name="roughness" value="0.25"/>
+			<float name="specularTint" value="0.0"/>
+			<float name="anisotropic" value="0.3"/>
+			<float name="sheen" value="0.5"/>
+			<float name="sheenTint" value="0.5"/>
+			<float name="clearcoat" value="0.3"/>
+			<float name="clearcoatGloss" value="0.5"/>
+			<float name="eta" value="1.5"/>
+		</bsdf>
+	</shape>
+
+	<shape type="sphere" id="Sphere9">
+		<point name="center" x="-0.3" y="-0.6" z="0.25"/>
+		<float name="radius" value="0.25"/>
+		<bsdf type="disneybsdf">
+			<rgb name="baseColor" value="0.0 0.28 0.67"/>
+			<float name="specularTransmission" value="0.0"/>
+			<float name="metallic" value="0.0"/>
+			<float name="subsurface" value="0.9"/>
+			<float name="specular" value="0.5"/>
+			<float name="roughness" value="0.4"/>
+			<float name="specularTint" value="0.0"/>
+			<float name="anisotropic" value="0.0"/>
+			<float name="sheen" value="0.8"/>
+			<float name="sheenTint" value="0.7"/>
+			<float name="clearcoat" value="0.8"/>
+			<float name="clearcoatGloss" value="0.9"/>
+			<float name="eta" value="1.5"/>
+		</bsdf>
+	</shape>
+
+	<shape type="sphere" id="Sphere10">
+		<point name="center" x="-1.2" y="-0.9" z="0.45"/>
+		<float name="radius" value="0.5"/>
+		<bsdf type="disneybsdf">
+			<rgb name="baseColor" value="0.25 0.41 0.88"/>
+			<float name="specularTransmission" value="0.9"/>
+			<float name="metallic" value="0.0"/>
+			<float name="subsurface" value="0.0"/>
+			<float name="specular" value="1.0"/>
+			<float name="roughness" value="0.05"/>
+			<float name="specularTint" value="0.0"/>
+			<float name="anisotropic" value="0.0"/>
+			<float name="sheen" value="0.0"/>
+			<float name="sheenTint" value="0.5"/>
+			<float name="clearcoat" value="0.0"/>
+			<float name="clearcoatGloss" value="0.5"/>
+			<float name="eta" value="1.5"/>
+		</bsdf>
+	</shape>
+
+	<shape type="sphere" id="Sphere11">
+		<point name="center" x="-2.0" y="-1.2" z="0.35"/>
+		<float name="radius" value="0.35"/>
+		<bsdf type="disneybsdf">
+			<rgb name="baseColor" value="0.0 0.0 0.5"/>
+			<float name="specularTransmission" value="0.0"/>
+			<float name="metallic" value="0.0"/>
+			<float name="subsurface" value="0.3"/>
+			<float name="specular" value="0.5"/>
+			<float name="roughness" value="0.6"/>
+			<float name="specularTint" value="0.0"/>
+			<float name="anisotropic" value="0.0"/>
+			<float name="sheen" value="0.0"/>
+			<float name="sheenTint" value="0.5"/>
+			<float name="clearcoat" value="1.0"/>
+			<float name="clearcoatGloss" value="0.95"/>
+			<float name="eta" value="1.5"/>
+		</bsdf>
+	</shape>
+
+	<shape type="sphere" id="Sphere12">
+		<point name="center" x="-2.8" y="-1.5" z="0.5"/>
+		<float name="radius" value="0.45"/>
+		<bsdf type="disneybsdf">
+			<rgb name="baseColor" value="0.8 0.1 0.15"/>
+			<float name="specularTransmission" value="0.0"/>
+			<float name="metallic" value="1.0"/>
+			<float name="subsurface" value="0.0"/>
+			<float name="specular" value="0.8"/>
+			<float name="roughness" value="0.2"/>
+			<float name="specularTint" value="0.0"/>
+			<float name="anisotropic" value="0.0"/>
+			<float name="sheen" value="0.0"/>
+			<float name="sheenTint" value="0.5"/>
+			<float name="clearcoat" value="0.0"/>
+			<float name="clearcoatGloss" value="0.5"/>
+			<float name="eta" value="1.5"/>
+		</bsdf>
+	</shape>
+
+	<shape type="sphere" id="Sphere13">
+		<point name="center" x="-3.5" y="-1.0" z="0.3"/>
+		<float name="radius" value="0.3"/>
+		<bsdf type="disneybsdf">
+			<rgb name="baseColor" value="0.9 0.45 0.1"/>
+			<float name="specularTransmission" value="0.0"/>
+			<float name="metallic" value="1.0"/>
+			<float name="subsurface" value="0.0"/>
+			<float name="specular" value="0.8"/>
+			<float name="roughness" value="0.15"/>
+			<float name="specularTint" value="0.0"/>
+			<float name="anisotropic" value="0.0"/>
+			<float name="sheen" value="0.0"/>
+			<float name="sheenTint" value="0.5"/>
+			<float name="clearcoat" value="0.0"/>
+			<float name="clearcoatGloss" value="0.5"/>
+			<float name="eta" value="1.5"/>
+		</bsdf>
+	</shape>
+
+	<shape type="sphere" id="Sphere14">
+		<point name="center" x="-4.2" y="-0.3" z="0.55"/>
+		<float name="radius" value="0.5"/>
+		<bsdf type="disneybsdf">
+			<rgb name="baseColor" value="1.0 0.75 0.2"/>
+			<float name="specularTransmission" value="0.0"/>
+			<float name="metallic" value="1.0"/>
+			<float name="subsurface" value="0.0"/>
+			<float name="specular" value="0.8"/>
+			<float name="roughness" value="0.1"/>
+			<float name="specularTint" value="0.0"/>
+			<float name="anisotropic" value="0.0"/>
+			<float name="sheen" value="0.0"/>
+			<float name="sheenTint" value="0.5"/>
+			<float name="clearcoat" value="0.0"/>
+			<float name="clearcoatGloss" value="0.5"/>
+			<float name="eta" value="1.5"/>
+		</bsdf>
+	</shape>
+
+	<shape type="sphere" id="Sphere15">
+		<point name="center" x="-4.0" y="0.8" z="0.4"/>
+		<float name="radius" value="0.4"/>
+		<bsdf type="disneybsdf">
+			<rgb name="baseColor" value="0.9 0.4 0.6"/>
+			<float name="specularTransmission" value="0.0"/>
+			<float name="metallic" value="1.0"/>
+			<float name="subsurface" value="0.0"/>
+			<float name="specular" value="0.8"/>
+			<float name="roughness" value="0.25"/>
+			<float name="specularTint" value="0.0"/>
+			<float name="anisotropic" value="0.0"/>
+			<float name="sheen" value="0.0"/>
+			<float name="sheenTint" value="0.5"/>
+			<float name="clearcoat" value="0.0"/>
+			<float name="clearcoatGloss" value="0.5"/>
+			<float name="eta" value="1.5"/>
+		</bsdf>
+	</shape>
+
+	<shape type="serialized" id="Plane-mesh_0">
+		<string name="filename" value="../matpreview/matpreview.serialized"/>
+		<integer name="shapeIndex" value="0"/>
+		<transform name="toWorld">
+			<scale y="2"/>
+			<rotate z="1" angle="-4.3"/>
+			<matrix value="3.38818 -4.06354 0 -1.74958 4.06354 3.38818 0 1.43683 0 0 5.29076 -0.0120714 0 0 0 1"/>
+			<translate z="-1"/>
+		</transform>
+
+		<ref name="bsdf" id="__planemat"/>
+	</shape>
+
+	<sensor type="perspective" id="Camera-camera">
+		<string name="fovAxis" value="smaller"/>
+		<float name="focusDistance" value="6.0"/>
+		<float name="fov" value="28.8415"/>
+		<transform name="toWorld">
+			<lookAt target="3.24072, -2.85176, 2.80939" origin="3.89558, -3.46243, 3.25463" up="-0.317366, 0.312466, 0.895346"/>
+		</transform>
+
+		<sampler type="independent">
+			<integer name="sampleCount" value="1024"/>
+		</sampler>
+
+		<film type="hdrfilm" id="film">
+			<integer name="width" value="1366"/>
+			<integer name="height" value="1024"/>
+			<string name="pixelFormat" value="rgb"/>
+			<boolean name="banner" value="false"/>
+
+			<rfilter type="gaussian"/>
+		</film>
+	</sensor>
+
+	<!-- Area light from above center -->
+	<shape type="sphere">
+		<point name="center" x="0" y="1" z="8"/>
+		<float name="radius" value="2"/>
+		<emitter type="area">
+			<spectrum name="radiance" value="15"/>
+		</emitter>
+		<bsdf type="diffuse">
+			<rgb name="reflectance" value="0 0 0"/>
+		</bsdf>
+	</shape>
+
+	<!-- Keep envmap for ambient lighting -->
+	<emitter type="envmap" id="Area_002-light">
+		<string name="filename" value="../matpreview/envmap.exr"/>
+		<transform name="toWorld">
+			<rotate y="1" angle="-180"/>
+			<matrix value="-0.224951 -0.000001 -0.974370 0.000000 -0.974370 0.000000 0.224951 0.000000 0.000000 1.000000 -0.000001 8.870000 0.000000 0.000000 0.000000 1.000000 "/>
+		</transform>
+		<float name="scale" value="0.5"/>
+	</emitter>
+</scene>

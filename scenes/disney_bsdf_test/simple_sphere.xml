@@ -34,14 +34,16 @@
 			<float name="clearcoatGloss" value="0.5"/>
 		</bsdf> -->
 
-<!-- 		<bsdf type="disneysheen">
+		<bsdf type="disneysheen">
 			<rgb name="baseColor" value="0.5 0.5 0.5"/>
-		</bsdf> -->
+			<!-- <float name ="sheenTint" value="0.2"/> -->
+		</bsdf>
 	</shape>
 
 	<shape type="sphere">
-		<point name="center" x="0" y="0" z="-10"/>
+		<!-- <point name="center" x="0" y="0" z="-10"/> -->
 		<!-- <point name="center" x="10" y="0" z="0"/> -->
+		<point name="center" x="0" y="10" z="0"/>
 		<float name="radius" value="0.1"/>
 
 		<emitter type="area">

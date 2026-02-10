@@ -33,7 +33,7 @@ Spectrum eval_op::operator()(const DisneyMetal &bsdf) const {
     // d_m = Normal Distribution Function (GGX)
     // d_m = 1 / (pi * alpha_x * alpha_y * half_vec_denom^2)
     // half_vec_denom = (h_local.x^2 / alpha_x^2) + (h_local.y^2 / alpha_y^2) + h_local.z^2
-    
+
     Real aspect = sqrt(1 - (anisotropic_value * 0.9));
     Real alpha_x = std::max(0.0001, (roughness_value * roughness_value) / aspect);
     Real alpha_y = std::max(0.0001, roughness_value * roughness_value * aspect);
@@ -44,18 +44,13 @@ Spectrum eval_op::operator()(const DisneyMetal &bsdf) const {
     // lambda_sqrt_in = (sqrt(1 + ((dir_l.x * alpha_x)^2 + (dir_l.y * alpha_y)^2   /  dir_l.z^2)) -1) / 2
     Real lambda_sqrt_in = (sqrt(1 + ((wi_local.x * alpha_x) * (wi_local.x * alpha_x) + (wi_local.y * alpha_y) * (wi_local.y * alpha_y)) / (wi_local.z * wi_local.z)) - 1) / 2.0;
     Real g_in = 1.0 / (1.0 + lambda_sqrt_in);
-    // g_out = 1 / (1 + lambda_sqrt_out)
-    // lambda = (sqrt(1 + ((dir_l.x * alpha_x)^2 + (dir_l.y * alpha_y)^2   /  dir_l.z^2)) -1) / 2
     Real lambda_sqrt_out = (sqrt(1 + ((wo_local.x * alpha_x) * (wo_local.x * alpha_x) + (wo_local.y * alpha_y) * (wo_local.y * alpha_y)) / (wo_local.z * wo_local.z)) - 1) / 2.0;
     Real g_out = 1.0 / (1.0 + lambda_sqrt_out);
-    // g_m = g_in * g_out
     Real g_m = g_in * g_out;
 
     // Spectrum f_metal = f_m * d_m * g_m / (4.0 * abs(n * dir_in))
     Spectrum f_metal = f_m * d_m * g_m / (4.0 * abs(dot(frame.n, dir_in)));
     return f_metal;
-
-
     
 }
 
@@ -70,6 +65,8 @@ Real pdf_sample_bsdf_op::operator()(const DisneyMetal &bsdf) const {
     if (dot(frame.n, dir_in) < 0) {
         frame = -frame;
     }
+
+
     Vector3 half_vector = normalize(dir_in + dir_out);
     Real n_dot_in = dot(frame.n, dir_in);
     Real n_dot_out = dot(frame.n, dir_out);
@@ -111,6 +108,8 @@ std::optional<BSDFSampleRecord>
     if (dot(frame.n, dir_in) < 0) {
         frame = -frame;
     }
+
+    // params
     Real anisotropic_value = eval(bsdf.anisotropic, vertex.uv, vertex.uv_screen_size, texture_pool);
     Real roughness_value = eval(bsdf.roughness, vertex.uv, vertex.uv_screen_size, texture_pool);
 

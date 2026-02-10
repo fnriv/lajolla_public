@@ -149,6 +149,7 @@ Real pdf_sample_bsdf_op::operator()(const DisneyBSDF &bsdf) const {
         Real totalWeight = diffuseWeight + metalWeight + clearcoatWeight + glassWeight;
         Real pdf = 0;
 
+        // checking to see how weights are distributed
         if (diffuseWeight > 0) {
             pdf += (diffuseWeight / totalWeight) * fmax(dot(frame.n, dir_out), Real(0)) / c_PI;
         }
